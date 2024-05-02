@@ -1,5 +1,4 @@
 src/build/
 src/dist/
 src/joanapy/__pycache__/
-src/joanapy/joana_app/
 src/joanapy/.DS_Store
