@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from pandas.core.dtypes import missing
 from joanapy.enrichment_obj import ENRICHMENT_OBJ
 from joanapy.joana import JOANA

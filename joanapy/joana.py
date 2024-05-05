@@ -13,7 +13,7 @@ import numpy as np
 import psutil
 import sys
 import matplotlib
-matplotlib.use("Cairo")
+#matplotlib.use("Cairo")
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.artist import Artist
@@ -1267,7 +1267,8 @@ class JOANA:
         sm = plt.cm.ScalarMappable(cmap=cm)
         sm.set_array([])
         #cbar = plt.colorbar(sm, ticks=[0, 0.5, 1])
-        plt.colorbar(sm, label='Probability of activity')
+        plt.colorbar(sm, label='Probability of activity',
+                     cax=ax.inset_axes([0.95, 0.1, 0.05, 0.8]),)
         #cbar.set_label('Node Values')
 
         plt.title('Top enriched gene-sets')
@@ -1453,7 +1454,8 @@ class JOANA:
             sm = plt.cm.ScalarMappable(cmap=cm)
             sm.set_array([])
             #cbar = plt.colorbar(sm, ticks=[0, 0.5, 1])
-            plt.colorbar(sm, label='Probability of activity')
+            plt.colorbar(sm, label='Probability of activity',
+                         cax=ax.inset_axes([0.95, 0.1, 0.05, 0.8]),)
             #cbar.set_label('Node Values')
 
             plt.title('Top enriched gene-sets')
