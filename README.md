@@ -2,7 +2,7 @@
 Joint continuous multi-Omics enrichment ANAlysis (JOANA).
 
 ## Build and install joanapy
-Make sure that your current directory is
+We recommend utilizing conda for environment management, and pip for installing joanapy as a Python package. Follow these instructions to set up and activate joanapy
 ```
 ../joanapy/src
 ```
