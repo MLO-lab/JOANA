@@ -1,5 +1,5 @@
 # joanapy
-Joint continuous multi-level Ontology enrichment ANAlysis (JOANA).
+Joint continuous multi-Omics enrichment ANAlysis (JOANA).
 
 ## Build and install joanapy
 Make sure that your current directory is
