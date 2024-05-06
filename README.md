@@ -20,8 +20,12 @@ after installing joanapy on joana environment run JOANA through run-joana functi
 
 ```
 run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output-directory-path] [-m min-num-genes]
--o gene names with signifficant scores (e.g. q-values) a two-column tab delimited file ().
--o2 
+-o gene names with signifficant scores (e.g. q-values) a two-column tab delimited file (input file name).
+-o2 gene names and correspond significant scores of the second modality (optional when you want to run joana with multi-omics data) (input file name)
+-p a .gmt file which contains biological pathways
+-d specify the path that your input files are there and also your result directory would be on that path
+-m its a number [0,1) which specified by client (default value is 0). it -m 0.5 means consider pathways which atleast 50% of the genes of that pathway have measurments.   
+
 ```
 
 
