@@ -2,7 +2,7 @@
 
 Joint continuous multi-Omics enrichment ANAlysis (JOANA) from MLO Lab.
 
-## Build and install joanapy
+## Install joanapy
 We recommend utilizing conda for environment management, and pip for installing joanapy as a Python package. Follow these instructions to set up and activate joanapy
 
 ```
@@ -16,12 +16,19 @@ Use pip to install joanapy on your conda environment.
 pip install .
 ```
 
+after installing joanapy on joana environment run JOANA through run-joana function.
+
+```
+run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output-directory-path] [-m min-num-genes]
+-o gene names with signifficant scores (e.g. q-values) a two-column tab delimited file ().
+-o2 
+```
 
 
 ## Example
 An example for how to run JOANA with joanapy can be found in the joanapy/tests folder.
 
-
+## Uninstall joanapy
 The package can be uninstalled with the following command:
 
 ```
