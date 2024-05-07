@@ -24,7 +24,7 @@ run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output
 -o2 gene names and correspond significant scores of the second modality (optional when you want to run joana with multi-omics data) (input file name)
 -p the name of 'gmt' file which contains biological pathways
 -d specify the path that all your input files are there and also your result directory would be on that path
--m its a number [0,1) which specified by client (default value is 0). '-m 0.5' means consider pathways which atleast 50% of its genes have measurments.   
+-m its a number [0,1) which specified by client (default value is 0). '-m 0.5' means JOANA consider pathways which atleast 50% of its genes have measurments.   
 
 ```
 
