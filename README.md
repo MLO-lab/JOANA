@@ -22,12 +22,37 @@ after installing joanapy on joana environment run JOANA through run-joana functi
 run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output-directory-path] [-m min-num-genes]
 -o gene names with signifficant scores (e.g. q-values) a two-column tab delimited file (input file name).
 -o2 gene names and correspond significant scores of the second modality (optional when you want to run joana with multi-omics data) (input file name)
--p a .gmt file which contains biological pathways
--d specify the path that your input files are there and also your result directory would be on that path
--m its a number [0,1) which specified by client (default value is 0). it -m 0.5 means consider pathways which atleast 50% of the genes of that pathway have measurments.   
+-p the name of 'gmt' file which contains biological pathways
+-d specify the path that all your input files are there and also your result directory would be on that path
+-m its a number [0,1) which specified by client (default value is 0). '-m 0.5' means consider pathways which atleast 50% of its genes have measurments.   
 
 ```
 
+The input files -o and -o2 should be a two-column tab-delimited file the first column geneNames and the second column significant scores(e.g. p-values, or adj-pvalues, ...) with the following format:
+
+```
+TMEM171  0.212951673007631
+AGR3  0.212951673007631
+KIR2DL3  0.212951673007631
+CROCC2  0.212951673007631
+PRSS3  0.212951673007631
+TGM2 0.212951673007631   
+```
+
+The 'gmt' file could be provided by downloading from msigDB or any other desired file with gmt format.
+
+To execute JAOAN on single-omics data if you are already in the directory of input data, the command line would be:
+
+```
+run-joana -o omics1.txt -p pathway.gmt -d ./ 
+
+```
+And to execute JAOAN on multi-omics data if you are already in the directory of input data, the command line would be:
+
+```
+run-joana -o omics1.txt -o2 omics2.txt -p pathway.gmt -d ./ 
+
+```
 
 ## Example
 An example for how to run JOANA with joanapy can be found in the joanapy/tests folder.
