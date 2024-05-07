@@ -28,7 +28,7 @@ run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output
 
 ```
 
-The input files -o and -o2 should be a two-column tab-delimited file with the following format:
+The input files -o and -o2 should be a two-column tab-delimited file (make sure files don't contain any header) with the following format:
 
 ```
 TMEM171  0.212951673007631
