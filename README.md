@@ -9,7 +9,7 @@ We recommend utilizing conda for environment management, and pip for installing 
 conda create -n joana python=3.11
 conda activate joana
 ```
-Make sure that your working directory is JOANA. 
+Make sure that your working directory is JOANA-main which you have downloaded. 
 Use pip to install joanapy on your conda environment.
 
 ```
