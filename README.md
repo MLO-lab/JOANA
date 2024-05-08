@@ -9,8 +9,14 @@ We recommend utilizing conda for environment management, and pip for installing 
 conda create -n joana python=3.11
 conda activate joana
 ```
+Before installing joanapy try to install mono on your conda environment by the following command
+
+```
+conda install conda-forge::mono
+```
+
 Make sure that your working directory is JOANA-main which you have downloaded. 
-Use pip to install joanapy on your conda environment.
+Use pip to install joanapy on your conda environment. 
 
 ```
 pip install .
@@ -31,28 +37,31 @@ run-joana [-o omics1.txt] [-o2 omics2.txt] [-p pathwayfile.gmt] [-d input-output
 The input files -o and -o2 should be a two-column tab-delimited file (make sure files don't contain any header) with the following format:
 
 ```
-TMEM171  0.212951673007631
-AGR3  0.212951673007631
-KIR2DL3  0.212951673007631
-CROCC2  0.212951673007631
-PRSS3  0.212951673007631
-TGM2 0.212951673007631   
+A2ML1  0.025202476125022
+A3GALT2  0.878666355638669
+A4GALT  0.983155339235838
+A4GNT  0.971337673847852
+AAAS  0.0863723498889275
+AACS  0.230709278931887
+AADAC  0.881216487254285
 ```
 
-The 'gmt' file could be downloaded from msigDB or any other desired file with gmt format.
+The 'gmt' file could be downloaded from msigDB or any other desired biological pathway file with gmt format.
 
 To execute JAOAN on single-omics data if you are already in the directory of input data, the command line would be:
 
 ```
-run-joana -o RNA.txt -p pathway.gmt -d ./ -m 0.7
+run-joana -o omics1.txt -p pathway.gmt -d ./ -m 0.7
 
 ```
 And to execute JAOAN on multi-omics data if you are already in the directory of input data, the command line would be:
 
 ```
-run-joana -o RNA.txt -o2 protein.txt -p pathway.gmt -d ./ -m 0.7
+run-joana -o omics1.txt -o2 omics2.txt -p pathway.gmt -d ./ -m 0.7
 
 ```
+Note:
+When dealing with multi-omics data, the '-o' input file serves as the reference file, and missing values in the second modality '-o2' are handled based on the reference data-modality. It's crucial to select the file with more gene measurements as the reference, as this provides better data integrity and completeness.
 
 ## Example
 An example for how to run JOANA with joanapy can be found in the joanapy/tests folder.
