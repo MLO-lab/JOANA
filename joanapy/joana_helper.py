@@ -56,7 +56,7 @@ def data_preproccessing(filename_qvalues_first, **kwargs):
         #qvalues1_2['qvalues2'][nan_indexes]= 0.9999999999
         
         qvalues1_2.loc[nan_indexes, 'qvalues2'] = 1-tiny_value
-        qvalues1_2.replace(0,tiny_value)
+        #qvalues1_2.replace(0,tiny_value)
         return(type,qvalues1_2,missing1,missing2)
     else:
         return(type,qvalues_first)
