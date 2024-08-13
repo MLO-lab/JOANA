@@ -24,7 +24,6 @@ def read_file(file_path):
 
 def data_preproccessing(filename_qvalues_first, **kwargs):
     # single species
-    tiny_value = 1e-10
     qvalues_first=read_file(filename_qvalues_first)
     qvalues_first = qvalues_first.dropna()
     
@@ -53,10 +52,7 @@ def data_preproccessing(filename_qvalues_first, **kwargs):
         nan_indexes = qvalues1_2[qvalues1_2['qvalues2'].isna()].index
         nan_indexes_flat = np.ravel(nan_indexes)
         missing2[nan_indexes_flat] = 1
-        #qvalues1_2['qvalues2'][nan_indexes]= 0.9999999999
-        
-        qvalues1_2.loc[nan_indexes, 'qvalues2'] = 1-tiny_value
-        qvalues1_2.replace(0,tiny_value)
+        qvalues1_2['qvalues2'][nan_indexes]= 0.9999999999
         return(type,qvalues1_2,missing1,missing2)
     else:
         return(type,qvalues_first)

@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: joanapy
+Version: 0.0.1
+Summary: Joint multi-level Ontology enrichment ANAlysis
+Author: Andreas Kopf
+Author-email: akopfethz@gmail.com
+Classifier: Programming Language :: Python :: 3
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: dill
+Requires-Dist: tqdm
+Requires-Dist: seaborn
+Requires-Dist: scipy
+Requires-Dist: networkx
+Requires-Dist: psutil
+Requires-Dist: igraph

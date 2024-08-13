@@ -1,0 +1,2 @@
+[console_scripts]
+run-joana = joanapy.bin.run_joana:main

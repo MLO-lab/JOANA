@@ -1,0 +1,9 @@
+numpy
+pandas
+dill
+tqdm
+seaborn
+scipy
+networkx
+psutil
+igraph
