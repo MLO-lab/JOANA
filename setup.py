@@ -12,7 +12,7 @@ setup(
         ],
     },
     install_requires=[
-        'numpy',
+        'numpy==1.23.2',
         'pandas',
         'dill',
         'tqdm',
