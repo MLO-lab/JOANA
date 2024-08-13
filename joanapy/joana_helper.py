@@ -27,6 +27,7 @@ def data_preproccessing(filename_qvalues_first, **kwargs):
     tiny_value = 1e-10
     qvalues_first=read_file(filename_qvalues_first)
     qvalues_first = qvalues_first.dropna()
+    qvalues_first = qvalues_first.replace({0: tiny_value, 1: 1 - tiny_value})
     
     #qvalues_first = pd.read_csv(omics1, header=0)
 
@@ -41,6 +42,7 @@ def data_preproccessing(filename_qvalues_first, **kwargs):
     type="single"
     if not filename_qvalues_second is None:
         qvalues_second=read_file(filename_qvalues_second)
+        qvalues_second = qvalues_second.replace({0: tiny_value, 1: 1 - tiny_value})
         #qvalues_second = pd.read_csv(omics2,header=0)
         #if(qvalues_second.ndim!=0):
         #    raise TypeError("Input data must be a 2 dimintions dataFrame, Frist column-name geneSymbol and second column-name qvalue.")
