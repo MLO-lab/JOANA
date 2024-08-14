@@ -1,14 +1,13 @@
-# joanapy
+# Results
 
-Joint continuous multi-Omics enrichment ANAlysis (JOANA) from MLO Lab.
+JOANA provides a set of results.
 
-## Install joanapy
-We recommend utilizing conda for environment management, and pip for installing joanapy as a Python package. Follow these instructions to set up and activate joanapy
+## barplots for probabilitis 
+joana provide a pdf file which contain barplots that shows enriched pathways with probailities more than 0.5 for multi-omics (cooperative) data and pathways for each single-omics modality more with probability >=0.5 and doesn't show up in multi-omics
 
-```
-conda create -n joana python=3.11
-conda activate joana
-```
+![PDF as Image](./results/barPlorProb.png)
+
+
 Before installing joanapy try to install mono on your conda environment by the following command
 
 ```
