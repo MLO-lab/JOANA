@@ -11,11 +11,11 @@ in first step it parametize signifance scores of Differentially Expresion Analys
 
 JOANA provides a plot which shows how BMM fits to the results of DEA (each omics type seperatly).
 
-![PDF as Image](./results/qvalues_second_moment_fitting_gof_hist.png)
+![PDF as Image](./results/qvalues_second_moment_fitting_mixture.png)
 
 It also provide a barplot which indicates goodness of fit to the obsereved data
 
-![PDF as Image](./results/qvalues_second_moment_fitting_mixture.png)
+![PDF as Image](./results/qvalues_second_moment_fitting_gof_hist.png)
 
 ## Results for Step II
 
