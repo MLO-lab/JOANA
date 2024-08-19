@@ -2,6 +2,7 @@ src/build/
 src/dist/
 src/joanapy/__pycache__/
 src/joanapy/.DS_Store
+src/README.ipynb
 joanapy/__pycache__/__init__.cpython-36.pyc
 joanapy/__pycache__/__init__.cpython-37.pyc
 joanapy/__pycache__/__init__.cpython-38.pyc

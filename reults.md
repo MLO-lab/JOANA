@@ -13,6 +13,7 @@ JOANA provides a plot which shows how BMM fits to the results of DEA (each omics
 
 ![PDF as Image](./results/qvalues_second_moment_fitting_mixture.png)
 
+
 It also provide a barplot which indicates goodness of fit to the obsereved data
 
 ![PDF as Image](./results/qvalues_second_moment_fitting_gof_hist.png)
