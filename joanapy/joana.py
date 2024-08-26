@@ -1282,7 +1282,7 @@ class JOANA:
 
 
     def __plot_cooperative(self, filename, top_percentile_edges=0, scaling_factor=5, fig_heigth=12, fig_width=15,
-             bbox=(100, 100, 600, 600), layout='kk', verbose_n_top_terms=-1, second_order='detailed', n_top_terms=10,max_term_label=15):
+             bbox=(100, 100, 600, 600), layout='kk', verbose_n_top_terms=-1, second_order='detailed', n_top_terms=10,max_term_label=20):
     
         # get top n terms
 
