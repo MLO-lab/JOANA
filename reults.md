@@ -1,38 +1,34 @@
 # Results
 
-JOANA works in two steps
+JOANA operates in two stages:
 
-in first step it parametize signifance scores of Differentially Expresion Analysis with a Beta Mixture Model (BMM). In the second step it infer probability of pathway activity with a Bayesian Network.
-
+1. **Parameterization**: In the first stage, it parameterizes the significance scores from Differential Expression Analysis (DEA) using a Beta Mixture Model (BMM).
+2. **Inference**: In the second stage, it estimates the probability of pathway activity within a Bayesian Network.
 
 ## Results for Step I
 
+JOANA generates a plot demonstrating how the BMM fits the DEA results for each omics type individually.
 
+![BMM Fit to DEA Results](./results/qvalues_second_moment_fitting_mixture.png)
 
-JOANA provides a plot which shows how BMM fits to the results of DEA (each omics type seperatly).
+Additionally, it provides a barplot showing the goodness of fit for the observed data.
 
-![PDF as Image](./results/qvalues_second_moment_fitting_mixture.png)
-
-
-It also provide a barplot which indicates goodness of fit to the obsereved data
-
-![PDF as Image](./results/qvalues_second_moment_fitting_gof_hist.png)
+![Goodness of Fit](./results/qvalues_second_moment_fitting_gof_hist.png)
 
 ## Results for Step II
 
-### barplots for probabilitis of pathway activity
-joana provide a pdf file which contain barplots that shows enriched pathways with probailities more than 0.5 for multi-omics (cooperative) data and pathways for each single-omics modality more with probability >=0.5 and doesn't show up in multi-omics
+### Barplots for Probabilities of Pathway Activity
 
-![PDF as Image](./results/barPlorProb.png)
+JOANA offers a PDF containing barplots that display enriched pathways with probabilities exceeding 0.5 for multi-omics (cooperative) data. It also shows pathways for each single-omics modality with probabilities >= 0.5 that do not appear in the multi-omics analysis.
 
+![Pathway Probabilities](./results/barPlorProb.png)
 
-It also shows a graph with indicate how pathways are related to each other (egdes thinkness shows how much pathways are interconnected (i.e. pathways have common genes) and the sixe of nodes shows the size of pathways)
+It also includes a graph depicting the relationships between pathways. The color of the nodes indicates the probability of pathway activity, the thickness of the edges shows the degree of interconnectedness between pathways (i.e., how many common genes they share), and the size of the nodes reflects the size of the pathways.
 
-![PDF as Image](./results/network.png)
+![Pathway Network](./results/network.png)
 
+Furthermore, it provides box plots and beeswarm plots that illustrate the percentage of insignificant active genes (hidden-active genes) in the enriched results.
 
-it also provides box-plot and beeswarm-plot that shows percentage of insignificant active genes (hidden-active) gene in the enriched results 
+![Box Plot of Insignificant Active Genes](./results/percentage_beta_significant_genes_0.1_CooperativeBoxplot.png)
 
-![PDF as Image](./results/percentage_beta_significant_genes_0.1_CooperativeBoxplot.png)
-
-![PDF as Image](./results/percentage_beta_significant_genes_0.1_CooperativeBeesWarm.png)
+![Beeswarm Plot of Insignificant Active Genes](./results/percentage_beta_significant_genes_0.1_CooperativeBeesWarm.png)
