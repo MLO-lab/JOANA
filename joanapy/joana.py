@@ -595,28 +595,7 @@ class JOANA:
             print( "Notice: Skipping plot for non-significant active genes because the number of 'non-significant active (hidden-active) genes' is zero")
             return  # Exit the function early
         
-        """
-        qvalues_enriched_terms = list()
-        genes_beta_signif_percentage = list()
-        genes_beta_signif_absolut_numbers = list()
-
-
         
-        for i in range(joana_output_enriched.shape[0]):
-            temp_ind_term = np.where(self.enrichment_obj.terms[0].values == joana_output_enriched.index.values[i])[0]
-
-            # find assigned genes
-            ind_genes_assigned = list()
-            for j in range(len(self.enrichment_obj.assignment_matrix)):
-                if temp_ind_term in self.enrichment_obj.assignment_matrix[j]:
-                    ind_genes_assigned.append(j)
-            ind_genes_assigned = np.asarray(ind_genes_assigned)
-            
-
-            qvalues_enriched_terms.append(self.enrichment_obj.qvalues_first[ind_genes_assigned].flatten())
-            genes_beta_signif_absolut_numbers.append(np.sum(np.logical_and(qvalues_enriched_terms[-1] > signif_threshold, qvalues_enriched_terms[-1] < empirical_quantile)))
-            genes_beta_signif_percentage.append(genes_beta_signif_absolut_numbers[-1]/len(ind_genes_assigned))
-         """
         plt.figure()
         sns.swarmplot(data=genes_beta_signif_percentage2)
 
@@ -639,56 +618,6 @@ class JOANA:
 
         # Show the plot
         
-
-        """
-        # histogram of percentage genes beta significant
-        plt.figure()
-        plt.hist(genes_beta_signif_percentage, bins=20)
-        plt.xlabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylabel('Frequency', fontsize=18)
-        plt.xlim([-0.05, 1.05])
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # histogram of number of genes beta significant
-        plt.figure()
-        plt.hist(genes_beta_signif_absolut_numbers, bins=20)
-        plt.xlabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylabel('Frequency', fontsize=18)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # scatter percentage of genes beta significant vs. probability
-        plt.figure()
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_percentage)
-        plt.xlabel('Probability', fontsize=18)
-        plt.xlim([0.45, 1.05])
-        plt.ylabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylim([-0.05, 1.05])
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # scatter number of genes beta significant vs. probability
-        plt.figure()
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_absolut_numbers)
-        plt.xlabel('Probability', fontsize=18)
-        plt.xlim([0.45, 1.05])
-        plt.ylabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-        """
 
 
     def __plot_hidden_significant_genes_cooperative(self, dir_output, signif_threshold=0.1, quantile=0.95, output_filetag=''):
@@ -760,55 +689,6 @@ class JOANA:
             plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%sBoxplot.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
             plt.close()
 
-
-
-            """# histogram of percentage genes beta significant
-            plt.figure()
-            plt.hist(genes_beta_signif_percentage, bins=20)
-            plt.xlabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-            plt.ylabel('Frequency', fontsize=18)
-            plt.xlim([-0.05, 1.05])
-            if output_filetag == '':
-                plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-            else:
-                plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-            plt.close()
-
-            # histogram of number of genes beta significant
-            plt.figure()
-            plt.hist(genes_beta_signif_absolut_numbers, bins=20)
-            plt.xlabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-            plt.ylabel('Frequency', fontsize=18)
-            if output_filetag == '':
-                plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-            else:
-                plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-            plt.close()
-
-            # scatter percentage of genes beta significant vs. probability
-            plt.figure()
-            plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_percentage)
-            plt.xlabel('Probability', fontsize=18)
-            plt.xlim([0.45, 1.05])
-            plt.ylabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-            plt.ylim([-0.05, 1.05])
-            if output_filetag == '':
-                plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-            else:
-                plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-            plt.close()
-
-            # scatter number of genes beta significant vs. probability
-            plt.figure()
-            plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_absolut_numbers)
-            plt.xlabel('Probability', fontsize=18)
-            plt.xlim([0.45, 1.05])
-            plt.ylabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-            if output_filetag == '':
-                plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-            else:
-                plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-            plt.close()"""
 
 
         ## cooperative
@@ -914,69 +794,7 @@ class JOANA:
 
         
 
-        """
-        # histogram of percentage genes beta significant
-        plt.figure()
-        plt.hist([genes_beta_signif_percentage_first, genes_beta_signif_percentage_second], color=['blue', 'red'], label=['genes', 'proteins'], bins=20)
-        plt.xlabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylabel('Frequency', fontsize=18)
-        plt.xlim([-0.05, 1.05])
-        leg = plt.legend(loc='best', fancybox=True, fontsize=18)
-        leg.get_frame().set_alpha(0.5)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # histogram of number of genes beta significant
-        plt.figure()
-        plt.hist([genes_beta_signif_absolut_numbers_first, genes_beta_signif_absolut_numbers_second], color=['blue', 'red'], label=['genes', 'proteins'], bins=20)
-        plt.xlabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylabel('Frequency', fontsize=18)
-        leg = plt.legend(loc='best', fancybox=True, fontsize=18)
-        leg.get_frame().set_alpha(0.5)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # scatter percentage of genes beta significant vs. probability
-        plt.figure()
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_percentage_first, c='blue', label='genes')
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_percentage_second, c='red', label='proteins', alpha=0.7)
-        plt.xlabel('Probability', fontsize=18)
-        plt.xlim([0.45, 1.05])
-        plt.ylabel('Percentage %s < genes < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        plt.ylim([-0.05, 1.05])
-        leg = plt.legend(loc='best', fancybox=True, fontsize=18)
-        leg.get_frame().set_alpha(0.5)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'percentage_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-
-        # scatter number of genes beta significant vs. probability
-        plt.figure()
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_absolut_numbers_first, c='blue', label='genes')
-        plt.scatter(joana_output_enriched[col].values.flatten(), genes_beta_signif_absolut_numbers_second, c='red', label='proteins', alpha=0.7)
-        plt.xlabel('Probability', fontsize=18)
-        plt.xlim([0.45, 1.05])
-        plt.ylabel('#genes %s < gene < Q95' % str(np.round(signif_threshold, 3)), fontsize=18)
-        leg = plt.legend(loc='best', fancybox=True, fontsize=18)
-        leg.get_frame().set_alpha(0.5)
-        if output_filetag == '':
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col)), bbox_inches='tight')
-        else:
-            plt.savefig(os.path.join(dir_output, 'absolut_beta_significant_genes_vs_probability_%s_%s_%s.pdf' % (str(np.round(signif_threshold, 3)), col, output_filetag)), bbox_inches='tight')
-        plt.close()
-        """
-
-
-
-
+        
 
     ########################################################################################################################################
     ######################################################## BARPLOT OF JOANA RESULTS ######################################################
@@ -1192,33 +1010,16 @@ class JOANA:
 
         # get the weights corresponding to these indices
         weights = N_similarity_matrix_terms_log[conn_indices]
-        #weights = similarity_matrix_terms_log[conn_indices]
-
-        # a sequence of (i, j) tuples, each corresponding to an edge from i -> j
-    #    edges = zip(*conn_indices)
-
-        # initialize the graph from the edge sequence
-    #    G = Graph(edges=edges, directed=False)
-
-        # assign node names and weights to be attributes of the vertices and edges
-        # respectively
-    #    G.es['weight'] = weights * 2
-
-        # I will also assign the weights to the 'width' attribute of the edges. this
-        # means that igraph.plot will set the line thicknesses according to the edge
-        # weights
-    #    G.es['width'] = weights
-
+    
         # vertex size based on term size
         term_sizes_logged = 1 + np.log(prob_terms_size_annotation.iloc[:,1]) - np.min(np.log(prob_terms_size_annotation.iloc[:,1]))
-    #    print(term_sizes_logged)
-        # term_sizes_logged_scaled = 1 + (term_sizes_logged - np.min(term_sizes_logged))/(np.max(term_sizes_logged) - np.min(term_sizes_logged))
+    
         min_term_sizes_scaled = np.percentile(term_sizes_logged, 25)
         factor_term_size = 15 / min_term_sizes_scaled
         final_vertex_sizes = 10 + term_sizes_logged * factor_term_size * 500
         value_sizes=prob_terms_size_annotation.iloc[:,1]/max(prob_terms_size_annotation.iloc[:,1])
         final_vertex_sizes = value_sizes*1000
-    #    G.vs['size'] = final_vertex_sizes
+  
 
         col = 'Single-Species'
 
@@ -1227,7 +1028,7 @@ class JOANA:
         modified_strings = [s[0] + s[1:max_term_label].lower() + ("..." if len(s) > max_term_label else "") for s in strings_without_prefix]
         temp_label= modified_strings
        
-    #    G.vs['label'] = temp_label
+
 
         edges_list = list(zip(*conn_indices))
 
@@ -1381,42 +1182,25 @@ class JOANA:
 
             # get the weights corresponding to these indices
             weights = N_similarity_matrix_terms_log[conn_indices]
-            #weights = similarity_matrix_terms_log[conn_indices]
-
-            # a sequence of (i, j) tuples, each corresponding to an edge from i -> j
-            #edges = zip(*conn_indices)
-
-            # initialize the graph from the edge sequence
-            #G = Graph(edges=edges, directed=False)
-
-            # assign node names and weights to be attributes of the vertices and edges
-            # respectively
-            #G.es['weight'] = weights * 10
-
-            # I will also assign the weights to the 'width' attribute of the edges. this
-            # means that igraph.plot will set the line thicknesses according to the edge
-            # weights
-            #G.es['width'] = weights
-
+            
             # vertex size based on term size
             term_sizes_logged = 1 + np.log(prob_terms_size_annotation.iloc[:,1]) - np.min(np.log(prob_terms_size_annotation.iloc[:,1]))
-            #print(term_sizes_logged)
-            # term_sizes_logged_scaled = 1 + (term_sizes_logged - np.min(term_sizes_logged))/(np.max(term_sizes_logged) - np.min(term_sizes_logged))
+            
             min_term_sizes_scaled = np.percentile(term_sizes_logged, 25)
             factor_term_size = 15 / min_term_sizes_scaled
             final_vertex_sizes = 10 + term_sizes_logged * factor_term_size * 500
             value_sizes=prob_terms_size_annotation.iloc[:,1]/max(prob_terms_size_annotation.iloc[:,1])
             final_vertex_sizes = value_sizes*1000
-            #G.vs['size'] = final_vertex_sizes
+            
 
-            #col = 'Single-Species'
+            
 
             temp_label=prob_terms_size_annotation.index
             strings_without_prefix = [s.split('_', 1)[-1] for s in temp_label]
             modified_strings = [s[0] + s[1:max_term_label].lower() + ("..." if len(s) > max_term_label else "") for s in strings_without_prefix]
             temp_label= modified_strings
         
-            #G.vs['label'] = temp_label
+            
 
             edges_list = list(zip(*conn_indices))
 
@@ -1491,220 +1275,3 @@ class JOANA:
             # Close the plot to avoid displaying it
             plt.close()
             
-
-        
-"""    def __plot_cooperative(self, filename, top_percentile_edges=0, scaling_factor=5, fig_heigth=12, fig_width=15,
-             bbox=(100, 100, 600, 600), layout='kk', verbose_n_top_terms=-1, second_order='detailed', n_top_terms=10,max_term_label=15):
-        print(n_top_terms)
-
-        all_prob_terms = list()
-        for col in ['Cooperative', 'Single-Species-1', 'Single-Species-2']:
-            # get top n terms
-            output_sorted = self.enrichment_obj.joana_output.sort_values(col, ascending=False)
-            prob_nth_term = output_sorted[col].values[n_top_terms]
-            #print(output_sorted[col])
-            #argmax_prob_nth_term = np.max(np.where(output_sorted[col].values == prob_nth_term)[0],np.where(output_sorted[col].values >=0.9))
-            argmax_prob_nth_term = np.max(np.where(output_sorted[col].values >0.9)[0])
-
-            if n_top_terms < argmax_prob_nth_term:
-                top_single_species = self.enrichment_obj.joana_output.sort_values(col, ascending=False).iloc[:(argmax_prob_nth_term+1)]
-                print(len(top_single_species))
-            else:
-                top_single_species = self.enrichment_obj.joana_output.sort_values(col, ascending=False).iloc[:n_top_terms]
-            print(top_single_species[col].values)
-            ind_prob = np.where(top_single_species[col].values > 0.5)[0]
-            
-            top_cooperative = top_single_species.iloc[ind_prob]
-            print(ind_prob)
-            #print(top_cooperative)
-            prob_terms = top_cooperative
-            prob_terms_unique = prob_terms.index.unique()
-            print(prob_terms_unique)
-            ind_unique = np.asarray([np.where(prob_terms.index.values == x)[0][0] for x in prob_terms_unique])
-            #print(ind_unique)
-            prob_terms = prob_terms.iloc[ind_unique]
-            print(prob_terms)
-            n_prob_terms = len(prob_terms_unique)
-
-            # get term size and term annotations
-            ind_terms = np.asarray([np.where(np.asarray(self.enrichment_obj.terms) == x)[0] for x in prob_terms_unique])
-            term_sizes = np.zeros((n_prob_terms,))
-            term_annotations = [list() for i in range(n_prob_terms)]
-            for i in range(len(self.enrichment_obj.assignment_matrix)):
-                for j in range(n_prob_terms):
-                    if ind_terms[j] in self.enrichment_obj.assignment_matrix[i]:
-                        term_sizes[j] += 1
-                        term_annotations[j].append(i)
-
-            # select terms based on ordering detailed or bigger picture with big terms
-            prob_terms_size = pd.DataFrame.copy(prob_terms)
-            print(prob_terms_size)
-            prob_terms_size['size'] = term_sizes
-            print(term_sizes)
-            if second_order == 'detailed':
-                prob_terms_size = prob_terms_size.sort_values(by=[col, 'size'], ascending=[False, True])
-            else:
-                prob_terms_size = prob_terms_size.sort_values(by=[col, 'size'], ascending=[False, False])
-            prob_terms = prob_terms_size.iloc[:n_top_terms]
-            prob_terms_unique = prob_terms.index.unique()
-            ind_unique = np.asarray([np.where(prob_terms.index.values == x)[0][0] for x in prob_terms_unique])
-            prob_terms = prob_terms.iloc[ind_unique]
-            n_prob_terms = len(prob_terms_unique)
-
-            all_prob_terms.append(prob_terms)
-
-        prob_terms = pd.concat(all_prob_terms)
-        print(prob_terms)
-        prob_terms_unique = prob_terms.index.unique()
-        ind_prob_terms_unique = list()
-        for term in prob_terms_unique:
-            temp_ind_term = np.where(prob_terms.index.values == term)[0]
-            if len(temp_ind_term) > 1:
-                ind_prob_terms_unique.append(np.asarray([temp_ind_term[0]]))
-            else:
-                ind_prob_terms_unique.append(temp_ind_term)
-        prob_terms = prob_terms.iloc[np.concatenate(ind_prob_terms_unique)]
-        n_prob_terms = len(prob_terms_unique)
-
-        # # get term size and term annotations
-        # ind_terms = np.asarray([np.where(np.asarray(self.enrichment_obj.terms) == x)[0] for x in prob_terms_unique])
-        # term_sizes = np.zeros((n_prob_terms,))
-        # term_annotations = [list() for i in range(n_prob_terms)]
-        # for i in range(len(self.enrichment_obj.assignment_matrix)):
-        #     for j in range(n_prob_terms):
-        #         if ind_terms[j] in self.enrichment_obj.assignment_matrix[i]:
-        #             term_sizes[j] += 1
-        #             term_annotations[j].append(i)
-
-        # select terms based on ordering detailed or bigger picture with big terms
-        # prob_terms_size = pd.DataFrame.copy(prob_terms)
-        # # prob_terms_size['size'] = term_sizes
-        # if second_order == 'detailed':
-        #     prob_terms_size = prob_terms_size.sort_values(by=['Cooperative', 'size'], ascending=[False, True])
-        # else:
-        #     prob_terms_size = prob_terms_size.sort_values(by=['Cooperative', 'size'], ascending=[False, False])
-        # prob_terms = prob_terms_size.iloc[:n_top_terms]
-        # prob_terms_unique = prob_terms.index.unique()
-        # ind_unique = np.asarray([np.where(prob_terms.index.values == x)[0][0] for x in prob_terms_unique])
-        # prob_terms = prob_terms.iloc[ind_unique]
-        # n_prob_terms = len(prob_terms_unique)
-
-        # how many labels to show on graph
-        if verbose_n_top_terms == -1:
-            verbose_n_top_terms = n_prob_terms
-
-        # get term size and term annotations
-        ind_terms = np.asarray([np.where(np.asarray(self.enrichment_obj.terms) == x)[0] for x in prob_terms_unique])
-        term_annotations = [list() for i in range(n_prob_terms)]
-        for i in range(len(self.enrichment_obj.assignment_matrix)):
-            for j in range(n_prob_terms):
-                if ind_terms[j] in self.enrichment_obj.assignment_matrix[i]:
-                    term_annotations[j].append(i)
-
-        # compute similarity based on term overlap
-        similarity_matrix_terms = np.zeros((n_prob_terms, n_prob_terms))
-        for i in range(n_prob_terms):
-            for j in range(n_prob_terms):
-                if i != j:
-                    similarity_matrix_terms[i, j] = len(np.intersect1d(term_annotations[i], term_annotations[j]))
-        similarity_matrix_terms_log = np.log(1 + similarity_matrix_terms)
-
-        # show only top percentile of connections
-        median_similarity = np.percentile(similarity_matrix_terms_log.flatten(), top_percentile_edges)
-        similarity_matrix_terms_log[similarity_matrix_terms_log < median_similarity] = 0
-
-        # normalize weights between 0-1
-        similarity_matrix_terms_log = (similarity_matrix_terms_log - np.min(similarity_matrix_terms_log)) / (
-                    np.max(similarity_matrix_terms_log) - np.min(similarity_matrix_terms_log))
-        similarity_matrix_terms_log *= scaling_factor
-
-        # get the row, col indices of the non-zero elements in your adjacency matrix
-        conn_indices = np.where(np.triu(similarity_matrix_terms_log))
-
-        # get the weights corresponding to these indices
-        weights = similarity_matrix_terms_log[conn_indices]
-
-        # a sequence of (i, j) tuples, each corresponding to an edge from i -> j
-        edges = zip(*conn_indices)
-
-        # initialize the graph from the edge sequence
-        G = Graph(edges=edges, directed=False)
-
-        # assign node names and weights to be attributes of the vertices and edges
-        # respectively
-        G.es['weight'] = weights
-
-        # I will also assign the weights to the 'width' attribute of the edges. this
-        # means that igraph.plot will set the line thicknesses according to the edge
-        # weights
-        G.es['width'] = weights
-
-        # vertex size based on term size
-        term_sizes_logged = 1 + np.log(term_sizes) - np.min(np.log(term_sizes))
-        # term_sizes_logged_scaled = 1 + (term_sizes_logged - np.min(term_sizes_logged))/(np.max(term_sizes_logged) - np.min(term_sizes_logged))
-        min_term_sizes_scaled = np.percentile(term_sizes_logged, 25)
-        factor_term_size = 15 / min_term_sizes_scaled
-        final_vertex_sizes = 10 + term_sizes_logged * factor_term_size
-        G.vs['size'] = final_vertex_sizes
-        print(n_prob_terms)
-        for col in ['Cooperative', 'Single-Species-1', 'Single-Species-2']:
-            
-            # only write significant terms
-            print(col)
-            temp_label = [''] * n_prob_terms
-            counter = 0
-            for i in range(n_prob_terms):
-                if prob_terms[col].values[i] > 0.5 and counter < verbose_n_top_terms:
-                    temp_label[i] = self.enrichment_obj.terms.values[ind_terms[i][0]]
-                    counter += 1
-            print(temp_label)
-            G.vs['label'] = temp_label
-
-            cmap = cm.get_cmap('Reds')
-            color_vertex = cmap(prob_terms[col].values)
-            print(prob_terms[col].values)
-            G.vs['color'] = [tuple(color_vertex[i]) for i in range(n_prob_terms)]
-            
-
-
-
-
-
-            # Create the figure
-            fig = plt.figure()
-            fig.set_figheight(fig_heigth)
-            fig.set_figwidth(fig_width)
-
-            # Create a basic plot
-            axes = fig.add_subplot(111)
-
-            # Draw the graph over the plot
-            # Two points to note here:
-            # 1) we add the graph to the axes, not to the figure. This is because
-            #    the axes are always drawn on top of everything in a matplotlib
-            #    figure, and we want the graph to be on top of the axes.
-            # 2) we set the z-order of the graph to infinity to ensure that it is
-            #    drawn above all the curves drawn by the axes object itself.
-            graph_artist = GraphArtist(G, bbox=bbox, layout=layout)
-            graph_artist.set_zorder(float('inf'))
-            print(type(axes.artists))
-            print(matplotlib.get_backend())
-            #axes.artists.append(graph_artist)
-            
-            axes.add_artist(graph_artist)
-
-            axes.axis('off')
-
-            # plot colorbar for probabilities
-            img = axes.imshow(np.array([[0, 1]]), cmap=cmap)
-            img.set_visible(False)
-            cbar = plt.colorbar(img, ax=axes)
-            cbar.ax.tick_params(labelsize=20)
-
-            # Save the figure
-            fig.savefig(filename.replace('.pdf', '_%d_%s.pdf' % (n_top_terms, col)), bbox_inches='tight')
-            plt.close()
-            print(col)"""
-            
-
-
