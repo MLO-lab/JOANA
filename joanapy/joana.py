@@ -590,6 +590,10 @@ class JOANA:
         genes_beta_signif_percentage2=genes_beta_signif_absolut_numbers2/term_sizes
         genes_beta_signif_percentage2= np.asarray(genes_beta_signif_percentage2)*100
         
+
+        if genes_beta_signif_percentage2.size==0:
+            print( "Notice: Skipping plot for non-significant active genes because the number of 'non-significant active (hidden-active) genes' is zero")
+            return  # Exit the function early
         
         """
         qvalues_enriched_terms = list()
@@ -731,6 +735,11 @@ class JOANA:
                     genes_beta_signif_absolut_numbers.append(np.sum(np.logical_and(qvalues_enriched_terms[-1] > signif_threshold, qvalues_enriched_terms[-1] < empirical_quantile_second)))
                 genes_beta_signif_percentage.append(genes_beta_signif_absolut_numbers[-1] / len(ind_genes_assigned))
             genes_beta_signif_percentage = np.asarray(genes_beta_signif_percentage) * 100
+            
+            if genes_beta_signif_percentage.size==0:
+                print( "Notice: Skipping plot for non-significant active genes in %s because the number of 'non-significant active (hidden-active) genes' is zero" % str(col))
+                continue  # Exit the function early
+            
             plt.figure()
             sns.swarmplot(data=genes_beta_signif_percentage)
 
@@ -852,6 +861,11 @@ class JOANA:
 
         genes_beta_signif_percentage_first=np.asarray(genes_beta_signif_percentage_first) * 100
         genes_beta_signif_percentage_second=np.asarray(genes_beta_signif_percentage_second) * 100
+
+        if genes_beta_signif_percentage_first.size == 0 and genes_beta_signif_percentage_second.size == 0:
+                print("Notice: Skipping plot for non-significant active genes because the number of 'non-significant active (hidden-active) genes' for both modalities is zero.")
+                return  # Exit the function early
+        
         plt.figure()
         sns.swarmplot(data=[genes_beta_signif_percentage_first,genes_beta_signif_percentage_second],palette=['blue', 'red'], label=['Single-Species-1', 'Single-Species-2'])
         plt.legend()
@@ -1109,6 +1123,10 @@ class JOANA:
         output_sorted = self.enrichment_obj.joana_output.sort_values('Single-Species', ascending=False)
         
         ind_prob = len(np.where(output_sorted['Single-Species'].values > 0.5)[0])
+        if ind_prob <= 1:
+                print("Notice: Network plotting is skipped because the number of enriched pathways is 1 or less.")
+                return  # Exit the function early
+
         if(ind_prob<n_top_terms):
             n_top_terms=ind_prob
         top_single_species=output_sorted.iloc[:(n_top_terms)]
@@ -1137,6 +1155,7 @@ class JOANA:
         # how many labels to show on graph
         if verbose_n_top_terms == -1:
             verbose_n_top_terms = n_prob_terms
+        
         
 
         # compute similarity based on term overlap
@@ -1225,8 +1244,8 @@ class JOANA:
         G_nx = nx.Graph()
 
         # Add nodes with attributes to the NetworkX graph
-        for v_idx, v in enumerate(G_igraph.vs):
-            G_nx.add_node(v_idx, size=final_vertex_sizes[v_idx], label=temp_label[v_idx])
+        for v_idx, label in enumerate(temp_label):
+                G_nx.add_node(v_idx, size=final_vertex_sizes[v_idx], label=label)
 
         # Add edges with weights to the NetworkX graph
         for e in G_igraph.es:
@@ -1290,6 +1309,12 @@ class JOANA:
             output_sorted = self.enrichment_obj.joana_output.sort_values(col, ascending=False)
             
             ind_prob = len(np.where(output_sorted[col].values > 0.5)[0])
+            
+            if ind_prob <= 1:
+                print("Notice: Network plotting is skipped for %s because the number of enriched pathways is 1 or less." % col)
+                return  # Exit the function early
+    
+
             n_terms=n_top_terms
             if(ind_prob<n_top_terms):
                 n_terms=ind_prob
@@ -1408,8 +1433,8 @@ class JOANA:
             G_nx = nx.Graph()
 
             # Add nodes with attributes to the NetworkX graph
-            for v_idx, v in enumerate(G_igraph.vs):
-                G_nx.add_node(v_idx, size=final_vertex_sizes[v_idx], label=temp_label[v_idx])
+            for v_idx, label in enumerate(temp_label):
+                G_nx.add_node(v_idx, size=final_vertex_sizes[v_idx], label=label)
 
             # Add edges with weights to the NetworkX graph
             for e in G_igraph.es:
